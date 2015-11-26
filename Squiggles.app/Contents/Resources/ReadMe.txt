@@ -4,14 +4,10 @@ Squiggles
 This sample is part of the WWDC 2008 Cocoa session: "Cocoa Fundamentals" Session 348.
 
 --------------------------------
-Build Requirements 
 
-Mac OS X 10.6 or later, Xcode 3.2 or later
+Sample Requirements
+The supplied Xcode project was created using Xcode v3.0 running under Mac OS X 10.5 or later.
 
-
-Runtime Requirements 
-
-Mac OS X 10.5 or later
 --------------------------------
 
 Using the Sample
@@ -24,7 +20,7 @@ Observe the multi-document support inherited by our controller from NSDocument: 
 Changes from Previous Versions
 
 v1.1:
-Bug fix, modified SquiggleView to override -isOpaque. Modified -initWithCoder to assign self.
+Bug fix, modified SquiggleView to override -isOpaque. 
 
 --------------------------------
 
