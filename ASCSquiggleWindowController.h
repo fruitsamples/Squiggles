@@ -1,7 +1,6 @@
 /*
-     File: main.m
- Abstract: Standard Cocoa entry-point for the "Squiggles" application
- 
+     File: ASCSquiggleWindowController.h
+ Abstract: Interface Declaration for the ASCSquiggleWindowController class.
   Version: 1.2
  
  Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple
@@ -44,11 +43,10 @@
  
  Copyright (C) 2012 Apple Inc. All Rights Reserved.
  
- */ 
+ */
 
 #import <Cocoa/Cocoa.h>
 
-int main(int argc, char *argv[])
-{
-    return NSApplicationMain(argc, (const char **) argv);
-}
+@interface ASCSquiggleWindowController : NSWindowController
+
+@end

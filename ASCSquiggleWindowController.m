@@ -1,7 +1,6 @@
 /*
-     File: main.m
- Abstract: Standard Cocoa entry-point for the "Squiggles" application
- 
+     File: ASCSquiggleWindowController.m
+ Abstract: Interface Declaration for the ASCSquiggleWindowController class.
   Version: 1.2
  
  Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple
@@ -44,11 +43,57 @@
  
  Copyright (C) 2012 Apple Inc. All Rights Reserved.
  
- */ 
+ */
 
-#import <Cocoa/Cocoa.h>
+#import "ASCSquiggleWindowController.h"
+#import "ASCSquiggleView.h"
+#import "ASCSquiggle.h"
 
-int main(int argc, char *argv[])
-{
-    return NSApplicationMain(argc, (const char **) argv);
+@interface ASCSquiggleWindowController ()
+
+@property (weak) IBOutlet NSStepper *rotationStepper;
+@property (weak) IBOutlet NSTextField *rotationTextField;
+@property (weak) IBOutlet ASCSquiggleView *squiggleView;
+
+@end
+
+
+@implementation ASCSquiggleWindowController
+
+#pragma mark - NSWindowController Methods
+
+- (void)awakeFromNib {
+    
+    [super awakeFromNib];
+    /*
+      Set the squiggle view rotations to be the value initially set for the text field in MainMenu.xib.
+     */
+    [self updateRotationCount:self.rotationTextField];
 }
+
+
+#pragma mark - Action Methods
+
+/*
+  Get the value from the sender (possibly the stepper *or* the text field) and update squiggleView's number of rotations.
+ */
+- (IBAction)updateRotationCount:(id)sender {
+    
+    self.squiggleView.rotations = [sender integerValue];
+
+    /*
+      Update both controls to make sure that both of them are up to date.
+     */
+    self.rotationStepper.integerValue = [sender integerValue];
+    self.rotationTextField.integerValue = [sender integerValue];
+}
+
+
+// Remove all squigles from the squiggle view.
+- (IBAction)removeAllSquiggles:(NSButton *)sender {
+    
+    [self.squiggleView removeAllSquiggles];
+}
+
+
+@end

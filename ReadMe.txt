@@ -1,59 +1,31 @@
-Squiggles
 
-"Squiggles" is a Cocoa Document-based Application that shows custom drawing and event-handling in a custom subclass of NSView.
-This sample is part of the WWDC 2008 Cocoa session: "Cocoa Fundamentals" Session 348.
+Basic Drawing and Event Handling
+================================
 
---------------------------------
-Build Requirements 
+This sample contains "Squiggles", a Cocoa window-based Application that shows custom drawing and event-handling in a custom subclass of NSView.
 
-Mac OS X 10.6 or later, Xcode 3.2 or later
-
-
-Runtime Requirements 
-
-Mac OS X 10.5 or later
 --------------------------------
 
 Using the Sample
-Build and run the sample using Xcode. Press and drag the mouse in the main view to create one or more "squiggles". 
-Drag the rotation slider to apply a rotational tranform repeatedly when drawing.
-Observe the multi-document support inherited by our controller from NSDocument: New Document, Save, Open, Undo, etc.
-
---------------------------------
-	
-Changes from Previous Versions
-
-v1.1:
-Bug fix, modified SquiggleView to override -isOpaque. Modified -initWithCoder to assign self.
+Build and run the sample using Xcode. Click and drag the mouse in the main view to create one or more "squiggles". 
+Use the text field and stepper to apply a rotational tranform repeatedly when drawing.
 
 --------------------------------
 
 Packaging List
 
-SquiggleView.h
-SquiggleView.m
-	The primary View in this sample. This is typical of Cocoa progams that find they need to do custom drawing and event handling. This class overrides the designated initializer -initWithFrame: to initialize its attributes, -drawRect: to respond to requests to draw, and two NSResponder methods -mouseDown: and -mouseDragged: to handle the events we care about.
+ASCSquiggleView.{h,m}
+	The primary view in this sample. This is typical of Cocoa progams that need to do custom drawing and event handling. This class overrides the designated initializer -initWithFrame: to initialize its attributes; -drawRect: to support custom drawing; and two NSResponder methods -mouseDown: and -mouseDragged: to handle mouse down and mouse drag events.
 	
-Squiggle.h
-Squiggle.m
-	This is the lowest level Model object in this application. It uses ObjectiveC 2 properties to provide access to the path, thickness, and color of a single squiggle drawn by the user. It conforms to the NSCoding protocol to supporting archiving by simply implementing -initWithCoder: and -encodeWithCoder:.
+ASCSquiggle.{h,m}
+	This is the lowest level model object in this application. A squiggle has a path, thickness, and color.
 
-MyDocument.h
-MyDocument.m
-	This functions as the Controller object for each open document in the sample application. It maintains the linkage between the model: an NSArray of Squiggle objects and the user interface archived in the "MyDocument" nib file. 
-	
-MyDocument.nib
-	An Interface Builder "nib" file with the archived window, rotation slider, outlet and target/action connections, and a placeholder for our custom SquiggleView to be created at runtime. This will be loaded each time a document is created or opened. Its "File's Owner" is the instance of the MyDocument class that will control this document and its user interface.
+ASCSquiggleWindowController.{h,m}
+	An instance of ASCSquiggleWindowController functions as the controller object for the application. It responds to messages from a text field, stepper, and button to update the content of the ASCSquiggleView.
 
-MainMenu.nib
-	An Interface Builder "nib" file with only the main menu in it. It will be loaded when the application is first launched, and its "File's Owner" is the instance of NSApplication.
+MainMenu.xib
+	A "nib" file with the main menu, window, and window controller. It will be loaded when the application is first launched, and its "File's Owner" is the instance of NSApplication. The window is configured to be visible on launch. The text field is configured with a number formatter to constrain the value to 1-25.
 
 --------------------------------
 
-Feedback and Bug Reports
-Please send all feedback about this sample by connecting to the Contact ADC page.
-Please submit any bug reports about this sample to the Bug Reporting page.
-
---------------------------------
-
-Copyright (C) 2010 Apple Inc. All rights reserved.
+Copyright (C) 2012 Apple Inc. All rights reserved.

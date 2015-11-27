@@ -1,7 +1,6 @@
 /*
-     File: main.m
- Abstract: Standard Cocoa entry-point for the "Squiggles" application
- 
+     File: ASCSquiggleView.h
+ Abstract: ASCSquiggleView is a subclass of NSView that supports custom drawing and event handling.
   Version: 1.2
  
  Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple
@@ -48,7 +47,14 @@
 
 #import <Cocoa/Cocoa.h>
 
-int main(int argc, char *argv[])
-{
-    return NSApplicationMain(argc, (const char **) argv);
-}
+@interface ASCSquiggleView : NSView
+
+/*
+  The number of times to rotate the current set of squiggles around the center of the view.
+ */
+@property (nonatomic) NSUInteger rotations;
+
+// Removes all squiggles from the view.
+- (void)removeAllSquiggles;
+
+@end

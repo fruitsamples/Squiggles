@@ -1,7 +1,6 @@
 /*
-     File: main.m
- Abstract: Standard Cocoa entry-point for the "Squiggles" application
- 
+     File: ASCSquiggle.m
+ Abstract: ASCSquiggle is a model class to represent a drawn line. It has properties for the path, color, and thickness of the line, and provides methods to add a new point to the line, and to draw the line.
   Version: 1.2
  
  Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple
@@ -46,9 +45,48 @@
  
  */ 
 
-#import <Cocoa/Cocoa.h>
+#import "ASCSquiggle.h"
 
-int main(int argc, char *argv[])
-{
-    return NSApplicationMain(argc, (const char **) argv);
+/*
+  The underlying model for our application. We'll let the ASCSquiggleView keep
+  an array of these.
+ */
+@implementation ASCSquiggle
+
+#pragma mark - Init Methods
+
+- (id)initWithInitialPoint:(NSPoint)initialPoint {
+    
+    self = [super init];
+    
+    if (self) {
+        // Create a default NSBezierPath.
+        _path = [NSBezierPath bezierPath];
+
+        // Set the initial point of the path to be "initialPoint".
+        [_path moveToPoint:initialPoint];
+    }
+
+    return self;
 }
+
+
+#pragma mark - Public Methods
+
+
+// Adds a line to the NSBezierPath from the last point to "point".
+- (void)addPoint:(NSPoint)point {
+
+    [self.path lineToPoint:point];
+}
+
+
+- (void)draw {
+    
+    // Set the color and line width for the drawing context then draw NSBezierPath instance.    
+    [self.color set];
+    [self.path setLineWidth:self.thickness];
+    [self.path stroke];
+}
+
+@end

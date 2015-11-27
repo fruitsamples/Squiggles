@@ -1,7 +1,3 @@
-//
-// Prefix header for all source files of the 'Squiggles' target in the 'Squiggles' project
-//
-
 #ifdef __OBJC__
     #import <Cocoa/Cocoa.h>
 #endif

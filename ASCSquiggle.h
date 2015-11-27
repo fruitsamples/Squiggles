@@ -1,7 +1,6 @@
 /*
-     File: main.m
- Abstract: Standard Cocoa entry-point for the "Squiggles" application
- 
+     File: ASCSquiggle.h
+ Abstract: ASCSquiggle is a model class to represent a drawn line. It has properties for the path, color, and thickness of the line, and provides methods to add a new point to the line, and to draw the line.
   Version: 1.2
  
  Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple
@@ -48,7 +47,16 @@
 
 #import <Cocoa/Cocoa.h>
 
-int main(int argc, char *argv[])
-{
-    return NSApplicationMain(argc, (const char **) argv);
-}
+@interface ASCSquiggle : NSObject
+
+@property NSBezierPath *path;
+@property NSColor *color;
+@property CGFloat thickness;
+
+- (id)initWithInitialPoint:(NSPoint)initialPoint;
+
+- (void)addPoint:(NSPoint)point;
+
+- (void)draw;
+
+@end
